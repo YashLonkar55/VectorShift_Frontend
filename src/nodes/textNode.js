@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { Handle, Position } from 'reactflow';
+import './TextNode.css';
 
 export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || '{{input}}');
   const [variables, setVariables] = useState([]);
+  const [containerHeight, setContainerHeight] = useState(150);
   const textRef = useRef(null);
 
-  // Function to detect variables in the format {{ variableName }}
   const detectVariables = (input) => {
     const regex = /\{\{\s*([a-zA-Z_$][a-zA-Z_$0-9]*)\s*\}\}/g;
     const matches = Array.from(input.matchAll(regex)).map((match) => match[1]);
-    setVariables([...new Set(matches)]); // Remove duplicates
+    setVariables([...new Set(matches)]);
   };
 
   const handleTextChange = (e) => {
@@ -19,82 +20,72 @@ export const TextNode = ({ id, data }) => {
     detectVariables(newText);
   };
 
+  // Add effect to sync with data.text changes
+  useEffect(() => {
+    if (data?.text !== undefined && data.text !== currText) {
+      setCurrText(data.text);
+      detectVariables(data.text);
+    }
+  }, [data?.text]);
+
+  // Initialize variables on mount
+  useEffect(() => {
+    detectVariables(currText);
+  }, []);
+
   useEffect(() => {
     if (textRef.current) {
-      // Adjust height dynamically based on text content
       textRef.current.style.height = 'auto';
-      textRef.current.style.height = `${textRef.current.scrollHeight}px`;
+      const scrollHeight = textRef.current.scrollHeight;
+      textRef.current.style.height = `${Math.min(scrollHeight, 150)}px`;
+      
+      // Calculate container height based on both textarea and variables
+      const textareaHeight = Math.min(scrollHeight, 150);
+      const variablesHeight = variables.length * 30;
+      const headerHeight = 45; // header + padding
+      const minHeight = 150;
+      
+      setContainerHeight(Math.max(minHeight, textareaHeight + variablesHeight + headerHeight));
     }
-  }, [currText]);
+  }, [currText, variables]);
 
   return (
-    <div
-      style={{
-        width: `${Math.min(Math.max(currText.length * 10, 100), 300)}px`, // Adjust width based on text length
-        border: '1px solid black',
-        padding: '10px',
-        borderRadius: '5px',
-        background: '#f9f9f9',
-        position: 'relative',
-        height: `${Math.max(100, variables.length * 30 + 40)}px`, // Ensure enough height for all handles
-      }}
-    >
-      <div style={{ marginBottom: '5px', fontWeight: 'bold' }}>Text Node</div>
-      <textarea
-        ref={textRef}
-        value={currText}
-        onChange={handleTextChange}
-        style={{
-          width: '100%',
-          resize: 'none',
-          border: 'none',
-          outline: 'none',
-          fontSize: '14px',
-          fontFamily: 'inherit',
-        }}
-      />
-      {variables.map((variable, index) => (
-        <div key={`${id}-${variable}`}>
-          {/* Target Handle for Variables */}
-          <Handle
-            type="target"
-            position={Position.Left}
-            id={`${id}-${variable}`}
-            style={{
-              top: `${index * 30 + 10}px`, // Space out handles
-              background: '#555',
-            }}
-          />
-            {/* Label for the Variable */}
-            {/* <span
-              style={{
-                position: 'absolute',
-                top: `${index * 30 + 15}px`,
-                left: '-50px',
-                padding: '2px 5px',
-                borderRadius: '3px',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                whiteSpace: 'nowrap',
-                background: '#e1e1e1',
-              }}
-          >
-            {variable}
-          </span> */}
-        </div>
-      ))}
+    <div className="node-container" style={{ height: `${containerHeight}px` }}
 
-      {/* Source Handle positioned at the bottom */}
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-output`}
-        style={{
-          background: '#555',
-          position: 'absolute',
-          bottom: '10px', // Position it at the bottom of the node
-        }}
-      />
+    >
+      <div className="node-header">
+        <div className="node-header-text">Text Node</div>
+      </div>
+      <div className="node-content">
+        <textarea
+          ref={textRef}
+          value={currText}
+          onChange={handleTextChange}
+          className="text-input"
+        />
+        {variables.map((variable, index) => (
+          <div key={`${id}-${variable}`}>
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`${id}-${variable}`}
+                style={{
+                top: `${index * 30 + 10}px`,
+                }}
+            />
+          </div>
+        ))}
+        <Handle
+          type="source"
+          position={Position.Right}
+          id={`${id}-output`}
+            style={{
+            bottom: '10px',
+            }}
+        />
+      </div>
     </div>
   );
 };
+
+
