@@ -1,0 +1,161 @@
+.node-container {
+	width: 280px;
+	background-color: #ffffff;
+	border-radius: 12px;
+	border: 4px solid rgba(0, 4, 255, 0.3);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.node-container:hover {
+	border-color: rgba(0, 4, 255, 0.5);
+	box-shadow: 0 0 15px rgba(0, 4, 255, 0.3);
+}
+  
+  .node-header {
+	padding: 12px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #f0f2f5;
+	background-color: #ffffff;
+  }
+  
+  .node-header-text {
+	font-size: 14px;
+	font-weight: 500;
+	color: #444;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+  }
+  
+  .node-content {
+	padding: 16px;
+  }
+  
+  .field-container {
+	margin-bottom: 16px;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .field-label {
+	font-size: 13px;
+	color: #6b7280;
+	margin-bottom: 6px;
+  }
+  
+  .field-input {
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1.5px solid #e5e7eb;
+	font-size: 14px;
+	width: 100%;
+	height: 40px;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+	background-color: #ffffff;
+  }
+  
+  .field-input:focus {
+	outline: none;
+	border-color: #6366f1;
+	box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+  
+  .field-select {
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1.5px solid #e5e7eb;
+	font-size: 14px;
+	width: 100%;
+	height: 40px;
+	background-color: #ffffff;
+	cursor: pointer;
+	box-sizing: border-box;
+	appearance: none;
+	background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+  }
+  
+  .field-select:focus {
+	outline: none;
+	border-color: #6366f1;
+	box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+  
+/* Target React Flow handles specifically */
+.react-flow__handle {
+	width: 13px !important;
+	height: 13px !important;
+	background-color: #5152a4 !important;
+	border: 3px solid #ffffff !important;
+	border-radius: 50% !important;
+}
+
+.react-flow__handle-left {
+	left: -8px !important;
+}
+
+.react-flow__handle-right {
+	right: -8px !important;
+}
+
+.react-flow__handle-top {
+	top: -8px !important;
+}
+
+.react-flow__handle-bottom {
+	bottom: -8px !important;
+}
+
+/* Add these styles for edges */
+.react-flow__edge-path {
+    stroke: #5152a4 !important;
+    stroke-width: 2 !important;
+}
+
+.react-flow__edge {
+    pointer-events: all;
+}
+
+/* Style for the arrow marker */
+.react-flow__arrowhead {
+    fill: #5152a4 !important;
+    stroke: none !important;
+}
+
+/* Add hover effect for edges */
+.react-flow__edge:hover .react-flow__edge-path {
+    stroke: #6366f1 !important;
+    stroke-width: 3 !important;
+    filter: drop-shadow(0 0 3px rgba(99, 102, 241, 0.4));
+}
+
+/* Animated edge path for data flow visualization */
+.react-flow__edge-path {
+    transition: stroke 0.3s, stroke-width 0.3s;
+}
+  
+  .node-header-actions {
+	display: flex;
+	gap: 8px;
+  }
+  
+  .node-header-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 4px;
+	color: #6b7280;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .node-header-button:hover {
+	color: #374151;
+  }

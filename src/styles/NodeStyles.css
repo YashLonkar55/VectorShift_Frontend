@@ -1,0 +1,51 @@
+/* General Node Styles */
+.node {
+    width: 220px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  }
+  
+  .node-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .node-input {
+    margin-left: 8px;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .node-select {
+    margin-left: 8px;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Hover Effects */
+  .node:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .node:active {
+    transform: scale(0.95);
+  }
+  
+  /* Input Node Specific Styles */
+  .input-node {
+    background: linear-gradient(135deg, #e0f7fa 0%, #e0f2f1 100%);
+  }
+  
+  /* LLM Node Specific Styles */
+  .llm-node {
+    background: linear-gradient(135deg, #ffecb3 0%, #ffeb8e 100%);
+  }
+  
