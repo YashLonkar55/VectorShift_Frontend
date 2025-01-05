@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Handle, Position, useReactFlow } from 'reactflow';
+import { TiDelete } from "react-icons/ti";
 import './TextNode.css';
 
 export const TextNode = ({ id, data }) => {
@@ -7,6 +8,7 @@ export const TextNode = ({ id, data }) => {
   const [variables, setVariables] = useState([]);
   const [containerHeight, setContainerHeight] = useState(150);
   const textRef = useRef(null);
+  const { setNodes } = useReactFlow();
 
   const detectVariables = (input) => {
     const regex = /\{\{\s*([a-zA-Z_$][a-zA-Z_$0-9]*)\s*\}\}/g;
@@ -18,6 +20,10 @@ export const TextNode = ({ id, data }) => {
     const newText = e.target.value;
     setCurrText(newText);
     detectVariables(newText);
+  };
+
+  const handleDelete = () => {
+    setNodes((nodes) => nodes.filter((node) => node.id !== id));
   };
 
   // Add effect to sync with data.text changes
@@ -53,9 +59,16 @@ export const TextNode = ({ id, data }) => {
     <div className="node-container" style={{ height: `${containerHeight}px` }}
 
     >
-      <div className="node-header">
+        <div className="node-header">
         <div className="node-header-text">Text Node</div>
-      </div>
+        <button 
+          className="delete-button"
+          onClick={handleDelete}
+          aria-label="Delete node"
+        >
+          <TiDelete size={20} />
+        </button>
+        </div>
       <div className="node-content">
         <textarea
           ref={textRef}

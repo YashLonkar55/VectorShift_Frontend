@@ -1,6 +1,7 @@
 // AbstractNode.js
-import { useState, useStore } from 'react';
-import { Handle, Position } from 'reactflow';
+import { useState } from 'react';
+import { Handle, Position, useReactFlow } from 'reactflow';
+import { TiDelete } from "react-icons/ti";
 import './AbstractNode.css';
 
 export const AbstractNode = ({
@@ -11,16 +12,27 @@ export const AbstractNode = ({
   handles = [],
 }) => {
   const [state, setState] = useState(initialValues);
-  // const updateNodeField = useStore((state) => state.updateNodeField);
+  const { setNodes } = useReactFlow();
+
   const handleChange = (key, value) => {
     setState((prev) => ({ ...prev, [key]: value }));
-    // updateNodeField(id, key, value);  // Use the store's method to update state
+  };
+
+  const handleDelete = () => {
+    setNodes((nodes) => nodes.filter((node) => node.id !== id));
   };
 
   return (
     <div className="node-container">
       <div className="node-header">
         <span className="node-header-text">{label}</span>
+        <button 
+          className="delete-button"
+          onClick={handleDelete}
+          aria-label="Delete node"
+        >
+          <TiDelete size={25} />
+        </button>
       </div>
       <div className="node-content">
         {fields.map((field) => (
