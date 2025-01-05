@@ -20,13 +20,39 @@
 }
 
 .toolbar-brand {
-	font-size: 18px;
-	font-weight: 600;
-	color: #24292e;		
-	margin-right: 24px;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 12px;
+	padding-right: 32px;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-logo {
+	height: 40px;
+	width: 40px;
+	object-fit: contain;
+	border-radius: 6px;
+}
+
+.brand-text {
+	font-size: 18px;
+	font-weight: 600;
+	color: #1a1a1a;
+	white-space: nowrap;
+}
+
+/* Adjust media query for responsive design */
+@media (max-width: 768px) {
+	.toolbar-brand {
+		padding-bottom: 16px;
+		border-right: none;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	
+	.toolbar-logo {
+		height: 32px;
+		width: 32px;
+	}
 }
 
 .toolbar-items {

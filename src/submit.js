@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useStore } from './store';
+import toast from 'react-hot-toast';
 
 export const SubmitButton = () => {
     const [loading, setLoading] = useState(false);
@@ -13,12 +14,12 @@ export const SubmitButton = () => {
         console.log('Nodes:', nodes);
         console.log('Edges:', edges);
         if (!nodes || !edges) {
-            alert('Please create some nodes and connect them before submitting.');
+            toast.error('Please create some nodes and connect them before submitting.');
             return;
         }
 
         if (nodes.length === 0) {
-            alert('Please add at least one node to the pipeline.');
+            toast.error('Please add at least one node to the pipeline.');
             return;
         }
 
@@ -51,18 +52,32 @@ export const SubmitButton = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                alert(
-                    `Pipeline Analysis:\nNumber of Nodes: ${data.num_nodes}\nNumber of Edges: ${data.num_edges}\nIs DAG: ${data.is_dag ? 'Yes' : 'No'}`
+                toast.success(
+                    <div>
+                        <h3 style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>Pipeline Analysis</h3>
+                        <p style={{ margin: '4px 0' }}>Number of Nodes: {data.num_nodes}</p>
+                        <p style={{ margin: '4px 0' }}>Number of Edges: {data.num_edges}</p>
+                        <p style={{ margin: '4px 0' }}>Is DAG: {data.is_dag ? 'Yes' : 'No'}</p>
+                    </div>,
+                    {
+                        duration: 5000,
+                        style: {
+                            padding: '16px',
+                            borderRadius: '8px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    }
                 );
             } else {
                 const errorData = await response.json().catch(() => null);
                 const errorMessage = errorData?.detail || errorData?.message || 'Unknown error occurred';
                 console.error('Server Error Response:', errorData);
-                alert(`Error: Failed to analyze the pipeline.\nDetails: ${errorMessage}`);
+                toast.error(`Failed to analyze the pipeline: ${errorMessage}`);
             }
         } catch (error) {
             console.error('Network Error:', error);
-            alert('Error: Could not connect to the backend server. Please ensure the server is running.');
+            toast.error('Could not connect to the backend server. Please ensure the server is running.');
         } finally {
             setLoading(false);
         }

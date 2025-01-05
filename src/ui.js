@@ -7,6 +7,7 @@ import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { InputNode } from './nodes/inputNode';
+import { inputNode1 } from './nodes/inputNode1';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
@@ -22,6 +23,7 @@ const gridSize = 20;
 const proOptions = { hideAttribution: true };
 const nodeTypes = {
   customInput: InputNode,
+  input1: inputNode1, // Added
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,

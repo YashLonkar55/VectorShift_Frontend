@@ -12,6 +12,7 @@ import {
     FiCode 
 } from 'react-icons/fi';
 import { BsRobot } from 'react-icons/bs';
+import logo from './assets/logo.jpg';
 
 export const PipelineToolbar = () => {
     const nodes = [
@@ -30,8 +31,8 @@ export const PipelineToolbar = () => {
         <div className="toolbar-container">
             <div className="toolbar-content">
                 <div className="toolbar-brand">
-                    <FiCpu />
-                    Pipeline Builder
+                    <img src={logo} alt="Logo" className="toolbar-logo" />
+                    <span className="brand-text">Pipeline Builder</span>
                 </div>
                 <div className="toolbar-items">
                     {nodes.map((node) => (
