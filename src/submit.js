@@ -39,7 +39,7 @@ export const SubmitButton = () => {
                 }))
             };
 
-            console.log("Sending payload:", payload);
+            console.log("Sending payload:", JSON.stringify(payload, null, 2));
 
             const response = await fetch('http://localhost:8000/pipelines/parse', {
                 method: 'POST',
@@ -57,7 +57,7 @@ export const SubmitButton = () => {
             } else {
                 const errorData = await response.json().catch(() => null);
                 const errorMessage = errorData?.detail || errorData?.message || 'Unknown error occurred';
-                console.error('Server Error:', errorMessage);
+                console.error('Server Error Response:', errorData);
                 alert(`Error: Failed to analyze the pipeline.\nDetails: ${errorMessage}`);
             }
         } catch (error) {

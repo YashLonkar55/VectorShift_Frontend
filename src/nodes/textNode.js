@@ -20,6 +20,22 @@ export const TextNode = ({ id, data }) => {
     const newText = e.target.value;
     setCurrText(newText);
     detectVariables(newText);
+    
+    // Update the node data when text changes
+    setNodes((nodes) =>
+      nodes.map((node) => {
+        if (node.id === id) {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              text: newText
+            }
+          };
+        }
+        return node;
+      })
+    );
   };
 
   const handleDelete = () => {
