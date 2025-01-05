@@ -1,7 +1,7 @@
 .toolbar-container {
 	background-color: #ffffff;
-	border-bottom: 1px solid #e1e4e8;
-	padding: 14px 24px;
+	border-bottom: 1px solid #dcdee0;
+	padding: 16px 26px;
 	width: 100%;
 	position: fixed;
 	top: 0;
@@ -14,7 +14,7 @@
 	display: flex;
 	
 	align-items: center;
-	gap: 16px;
+	gap: 18px;
 	max-width:100%;
 	margin: 10 auto;
 }
@@ -22,20 +22,20 @@
 .toolbar-brand {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 14px;
 	padding-right: 32px;
 	border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .toolbar-logo {
-	height: 40px;
-	width: 40px;
+	height: 44px;
+	width: 44px;
 	object-fit: contain;
 	border-radius: 6px;
 }
 
 .brand-text {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 600;
 	color: #1a1a1a;
 	white-space: nowrap;
@@ -57,36 +57,38 @@
 
 .toolbar-items {
 	display: flex;
+	
 	gap: 8px;
 	flex-wrap: wrap;
 	align-items: center;
 }
 
 .draggable-item {
-	padding: 20px 16px;  /* Increased from 15px 12px */
-	min-width: 120px;    /* Added minimum width */
+	padding: 12px 6px;  /* Increased from 15px 12px */
+	min-width: 80px;    /* Added minimum width */
 	background-color: #f6f8fa;
-	border: 1px solid #e1e4e8;
+	border: 1px solid #b7babd9c;
 	border-radius: 6px;
 	cursor: move;
 	font-size: 13px;
 	color: #24292e;
 	transition: all 0.2s ease;
 	display: flex;
-	/* flex-direction: column; */
+	flex-direction: column;
 	align-items: center;
 	justify-content: center; /* Added to center content */
 	gap: 8px;              /* Increased from 6px */
 }
 
-/* .draggable-item:hover {
+.draggable-item:hover {
 	background-color: #f3f4f6;
-	border-color: #1a2430;
+	border-color: rgba(0, 4, 255, 0.5);
 	transform: translateY(-1px);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added shadow for better hover effect */
- */
+}
 
 .icon {
-	font-size: 16px;
-	color: #586069;
+	font-size: 22px;
+	
+	color: #000000;
 }

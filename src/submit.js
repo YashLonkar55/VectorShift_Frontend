@@ -84,22 +84,27 @@ export const SubmitButton = () => {
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px 0' }}>
             <button
                 onClick={handleSubmit}
                 type="button"
                 style={{
-                    padding: '8px 16px',
-                    backgroundColor: loading ? '#e2e8f0' : '#f6f8fa',
-                    border: '1px solid #2a2b2c',
-                    borderRadius: '6px',
+                    padding: '10px 20px',
+                    backgroundColor: loading ? 'rgba(0, 4, 255, 0.5)' : 'rgba(0, 4, 255, 0.5)',
+                    color: loading ? '#6b7280' : '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
                     cursor: loading ? 'not-allowed' : 'pointer',
-                    fontSize: '13px',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.3s ease',
                 }}
                 disabled={loading}
+                
             >
                 {loading ? 'Submitting...' : 'Submit'}
             </button>
-        </div>
+        </div>  
     );
 };

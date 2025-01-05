@@ -2,7 +2,6 @@ import { DraggableNode } from './draggableNode';
 import './toolbar.css';
 import { 
     FiBox, 
-    FiCpu, 
     FiSend, 
     FiType, 
     FiServer,
